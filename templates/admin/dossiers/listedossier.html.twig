@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	{# {% if app.user %} #}
+		
+	{# {% endif %} #}
+	<h1>Liste des dossiers</h1>
+	{# {{ dump(dossiers) }} #}
+	{# {{ dump(materiel) }} #}
+
+
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th>Numéro de dossier</th>
+				<th>Client</th>
+				<th>Matériel</th>
+				<th>Panne</th>
+				<th>Paiement</th>
+				<th>Statut</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for dossier in dossiers %}
+				{# {{ dump(dossier.materiel)}} #}
+				<tr>
+					<td>{{ dossier.num }}</td>
+					<td>
+						{{ dossier.client.nom}}
+						{{ dossier.client.prenom}}
+					</td>
+					<td>
+						{{ dossier.materiel.marque}}
+						{{ dossier.materiel.model}}
+					</td>
+					<td>
+						{{ dossier.materiel.panne.description}}
+					</td>
+					<td>
+						{% if dossier.paiement.montant > 0 %}
+							<p>PAY&Eacute; le
+								{{ dossier.paiement.datePaiement|date("m/d/Y")}}</p>
+						{% else %}
+							<p>&Agrave; PAYER</p>
+						{% endif %}
+					</td>
+					<td>
+						{% if dossier.statut == "Nouveau" %}
+							<p class="text-success">{{ dossier.statut }}</p>
+						{% else %}
+							<p>{{ dossier.statut}}</p>
+						{% endif %}
+
+					</td>
+					<td>
+						<a href="{{ path("admin_detaildossier", {"num": dossier.num} ) }}" class="btn btn-info" type="button">+</a>
+					</td>
+					<td></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

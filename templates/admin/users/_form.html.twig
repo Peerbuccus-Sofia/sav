@@ -1,0 +1,29 @@
+
+<div class="container">
+    <div style="margin-top:75px;" > 
+    <!-- ouverture du formulaire de modification des employés -->
+    {{ form_start(userform) }} 
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(userform.nom, {'attr': {'placeholder' : "Nom ..."}} ) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(userform.prenom) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">{{ form_row(userform.email, {'placeholder' : 'Nouvel email'}) }}</div>
+    </div>
+    <div class="row">
+        <div class="col-5">{{ form_row(userform.roles) }}</div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Valider</button>
+    </div>
+    
+    <!-- fermeture du formulaire -->
+    {{ form_end(userform) }}
+    </div>
+</div>
