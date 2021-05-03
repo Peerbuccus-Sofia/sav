@@ -19,9 +19,10 @@ class MaterielRepository extends ServiceEntityRepository
         parent::__construct($registry, Materiel::class);
     }
 
-    // /**
-    //  * @return Materiel[] Returns an array of Materiel objects
-    //  */
+     /**
+      * @return Materiel[] Returns an array of Materiel objects
+      */
+
     /*
     public function findByExampleField($value)
     {

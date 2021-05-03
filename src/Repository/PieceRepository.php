@@ -19,32 +19,20 @@ class PieceRepository extends ServiceEntityRepository
         parent::__construct($registry, Piece::class);
     }
 
-    // /**
-    //  * @return Piece[] Returns an array of Piece objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    /**
+     * @return Piece[] Returns an array of Piece objects
+     */
 
-    /*
-    public function findOneBySomeField($value): ?Piece
+    public function infopiece($id)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->from('App\Entity\Piece', 'pi')
+            ->join('pi.pannes', 'pa')
+            ->join('pa.materiel', 'm')
+            ->where('m.id =:id')
+            ->setParameter('id', $id)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
+
 }

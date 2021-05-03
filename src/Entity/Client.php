@@ -27,49 +27,49 @@ class Client
     /**
      * @var string|null
      *
-     * @ORM\Column(name="NOM", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="NOM", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="PRENOM", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="PRENOM", type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ADR", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ADR", type="string", length=255, nullable=true)
      */
     private $adr;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="VILLE", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="VILLE", type="string", length=255, nullable=true)
      */
     private $ville;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="CP", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CP", type="integer", nullable=true)
      */
     private $cp = NULL;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="TEL", type="bigint", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="TEL", type="bigint", nullable=true)
      */
     private $tel;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="MAIL", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="MAIL", type="string", length=255, nullable=true)
      */
     private $mail;
 

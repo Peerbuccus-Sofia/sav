@@ -32,23 +32,23 @@ class Evenement
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="DATE_ECHANGE", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DATE_ECHANGE", type="datetime", nullable=true)
      */
-    private $dateEchange = 'NULL';
+    private $dateEchange;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="MOYEN", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="MOYEN", type="string", length=255, nullable=true)
      */
-    private $moyen = 'NULL';
+    private $moyen;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DEMANDE", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DEMANDE", type="string", length=255, nullable=true)
      */
-    private $demande = 'NULL';
+    private $demande;
 
     /**
      * @var string|null

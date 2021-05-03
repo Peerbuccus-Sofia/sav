@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dépôt de matériel{% endblock %}
+
+{% block body %}
+    <h1>Dépôt de matériel</h1>
+    {# {{  form(matform) }} #}
+    {{ include ('admin/depotmateriel/materiel/_form.html.twig', {form : matform, button: 'Valider'} )}}
+    {{ include ('admin/depotmateriel/_form.html.twig', {form : dmform, button: 'Créer'} )}}
+{% endblock %}

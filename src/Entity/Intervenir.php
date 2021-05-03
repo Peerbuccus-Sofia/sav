@@ -34,16 +34,16 @@ class Intervenir
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="DATE_INTERVENTION", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DATE_INTERVENTION", type="datetime", nullable=true)
      */
-    private $dateIntervention = 'NULL';
+    private $dateIntervention;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DESCRIPTION", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DESCRIPTION", type="string", length=255, nullable=true)
      */
-    private $description = 'NULL';
+    private $description;
 
     public function getTechnicien(): ?string
     {

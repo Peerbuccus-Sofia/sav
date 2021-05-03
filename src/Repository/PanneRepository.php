@@ -23,17 +23,30 @@ class PanneRepository extends ServiceEntityRepository
      * @return Panne[] Returns an array of Panne objects
      */
 
-    public function infopanne($iddossier)
-    {
-        return $this->createQueryBuilder('p')
-            ->from('App\Entity\Dossier', 'd')
-            ->join('d.materiel', 'm')
-            ->join('m.panne', 'pa')
-            ->where('d.num = :iddossier')
-            ->setParameter('iddossier', $iddossier)
-            ->getQuery()
-            ->getResult();
-    }
+    // public function infopiece($iddossier)
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->from('App\Entity\Dossier', 'd')
+    //         ->join('d.materiel', 'm')
+    //         ->join('m.pannes', 'pa')
+    //         ->join('pa.piece', 'pi')
+    //         ->where('d.num =:id')
+    //         ->setParameter('id', $iddossier)
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+
+    
+   
+    // public function infodossier()
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->from('App\Entity\Panne', 'pa')
+    //         ->join('pa.materiel', 'm')
+    //         ->join('m.dossier', 'd')
+    //         ->getQuery()
+    //         ->getResult();
+    // }
 
     /*
     public function findOneBySomeField($value): ?Panne

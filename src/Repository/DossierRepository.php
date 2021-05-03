@@ -23,15 +23,28 @@ class DossierRepository extends ServiceEntityRepository
      * @return Dossier[] Returns an array of Dossier objects
      */
 
-    public function infodossier()
+    public function infodossiers()
     {
-        return $this->createQueryBuilder('p')
+        return $this->createQueryBuilder('do')
             ->from('App\Entity\Dossier', 'd')
             ->join('d.materiel', 'm')
-            ->join('m.panne', 'pa')
+            ->join('m.pannes', 'pa')
             ->getQuery()
             ->getResult();
     }
+
+    // public function infodossier($iddossier)
+    // {
+    //     return $this->createQueryBuilder('do')
+    //         ->from('App\Entity\Dossier', 'd')
+    //         ->join('d.materiel', 'm')
+    //         ->join('m.pannes', 'pa')
+    //         ->join('pa.piece', 'pi')
+    //         ->where('d.num =:id')
+    //         ->setParameter('id', $iddossier)
+    //         ->getQuery()
+    //         ->getResult();
+    // }
 
 
     /*

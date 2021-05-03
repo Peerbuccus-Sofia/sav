@@ -4,9 +4,130 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Dossier
-		{{ dossier.num }}</h1>
+	<h1>Dossier {{ dossier.num }}</h1>
 	{{ dump(dossier) }}
-
+	{{	dump(pieces) }}
 	
+	{# --- fiche client --- #}
+	<div class="container bg-white" style="border-radius: 50px" >   
+            <div class="row">
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1"></div>
+                <div class="col-md-10 col-xs-12 col-sm-6 col-lg-10">
+                    <div class="container" >
+                        <h2>Fiche client</h2>
+                    </div>
+                    <hr>
+                    <ul class="nav flex-column bg-white mb-0">
+                        <li class="nav-item"><p><i class="fa fa-user mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ dossier.client.nom}} {{ dossier.client.prenom }}</p></li>
+                        <li class="nav-item"><p><i class="fa fa-phone mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ dossier.client.tel }}</p></li>
+                        <li class="nav-item"><p><i class="fa fa-envelope mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ dossier.client.mail }}</p></li>
+                        <li class="nav-item"><p><i class="fa fa-map-marker mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ dossier.client.adr }} {{ dossier.client.ville }} {{ dossier.client.cp }}</p></li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1">
+                    <div class="container">
+                        <div class="row">
+							<a class="display-4" href=""><i class="fa fa-pencil-square-o"></i></a>
+                        </div>  
+                    </div>      
+                </div>  
+            </div>
+        </div>
+	{# --- End fiche client ---  #}
+
+	<br>
+
+	{# --- Materiel --- #}
+
+	<div class="container bg-white " style="border-radius: 50px" >   
+            <div class="row">
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1"></div>
+                <div class="col-md-10 col-xs-12 col-sm-6 col-lg-10">
+                    <div class="container" >
+                        <h2>Produit</h2>
+                    </div>
+
+                    <table class="table">
+						<thead>
+							<tr>
+								<th>Type</th>
+								<th>Marque</th>
+								<th>Model</th>
+								<th>Compte</th>
+								<th>Mot de passe</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td> {{dossier.materiel.type}}</td>
+								<td> {{dossier.materiel.marque}}</td>
+								<td> {{dossier.materiel.model}}</td>
+								<td> {{dossier.materiel.compte}}</td>
+								<td> {{dossier.materiel.mdp}}</td>
+							</tr>
+						</tbody>
+					</table>
+                </div> 
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1">
+					<div class="container">
+                        <div class="row">
+							<a class="display-4" href=""><i class="fa fa-pencil-square-o"></i></a>
+                        </div>
+                    </div>   
+				</div>  
+            </div>
+        </div>
+
+	{# --- End Materiel --- #}
+
+	<br>
+
+	{# --- Panne ---#}
+
+	<div class="container bg-white" style="border-radius: 50px" >   
+            <div class="row">
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1"></div>
+				<div class="col-md-10 col-xs-12 col-sm-6 col-lg-10">
+			    	<div class="container" >
+                        <h2>Panne</h2>
+                    </div>
+					<table class="table">
+						<tr>
+							<th>Description de la panne</th>
+							<th>Pièces requises</th>
+							<th>Prise en charge par</th>
+							<th>Etat de la panne</th>
+							<th>Editer</th>
+						</tr>
+						{# {% for panne in dossier.materiel.pannes %} #}
+						{% for piece in pieces %}
+				
+							<tr>
+								<td> </td>
+								<td> 
+									{{ piece.libelle}}
+								</td>
+								<td></td>
+								<td></td>
+								<td><p class="text-center"><a class="h3" href=""><i class="fa fa-pencil-square-o"></i></p></a></td>
+							</tr>
+						{% endfor %}
+						
+					</table>
+				</div>
+
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1">
+                       
+                </div>  
+            </div>
+        </div>
+
+	{# --- End Panne --- #}
+
+	{# --- Paiement --- #}
+
+
+	{# --- End Paiement --- #}
+
 {% endblock %}

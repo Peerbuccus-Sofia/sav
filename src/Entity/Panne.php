@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Panne
  *
- * @ORM\Table(name="panne", indexes={@ORM\Index(name="I_FK_PANNE_PIECE", columns={"PIECE"} )} )
+ * @ORM\Table(name="panne", indexes={@ORM\Index(name="I_FK_PANNE_PIECE", columns={"PIECE"} )}, indexes={@ORM\Index(name="I_FK_PANNE_MATERIEL", columns={"MATERIEL"} )} )
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\PanneRepository")
  */
@@ -29,21 +29,21 @@ class Panne
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DESCRIPTION", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DESCRIPTION", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="DATE_PANNE", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DATE_PANNE", type="datetime", nullable=true)
      */
     private $datePanne;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ETAT", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ETAT", type="string", length=255, nullable=true)
      */
     private $etat;
 
@@ -54,14 +54,11 @@ class Panne
     private $piece;
 
     /**
-     * @ORM\OneToMany(targetEntity=Materiel::class, mappedBy="panne")
+     * @ORM\ManyToOne(targetEntity=Materiel::class, inversedBy="pannes")
+     * @ORM\JoinColumn(nullable=false, name="MATERIEL", referencedColumnName="ID")
      */
-    private $materiels;
+    private $materiel;
 
-    public function __construct()
-    {
-        $this->materiels = new ArrayCollection();
-    }
 
     public function getId(): ?string
     {
@@ -116,32 +113,14 @@ class Panne
         return $this;
     }
 
-    /**
-     * @return Collection|Materiel[]
-     */
-    public function getMateriels(): Collection
+    public function getMateriel(): ?Materiel
     {
-        return $this->materiels;
+        return $this->materiel;
     }
 
-    public function addMateriel(Materiel $materiel): self
+    public function setMateriel(?Materiel $materiel): self
     {
-        if (!$this->materiels->contains($materiel)) {
-            $this->materiels[] = $materiel;
-            $materiel->setPanne($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMateriel(Materiel $materiel): self
-    {
-        if ($this->materiels->removeElement($materiel)) {
-            // set the owning side to null (unless already changed)
-            if ($materiel->getPanne() === $this) {
-                $materiel->setPanne(null);
-            }
-        }
+        $this->materiel = $materiel;
 
         return $this;
     }

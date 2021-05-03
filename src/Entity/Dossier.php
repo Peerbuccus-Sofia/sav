@@ -29,14 +29,14 @@ class Dossier
     /**
      * @var string|null
      *
-     * @ORM\Column(name="STATUT", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="STATUT", type="string", length=255, nullable=true)
      */
     private $statut;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="DATE_DOSSIER", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DATE_DOSSIER", type="datetime", nullable=true)
      */
     private $dateDossier;
 

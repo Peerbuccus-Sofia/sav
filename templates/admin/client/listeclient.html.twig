@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	{# ----- titre et form de rechercher ----- #}
+    <div class="container">
+		<div class="row">
+			<div class="col-7">
+				<h1>Répertoire</h1>
+			</div>
+			<div class="col-5">
+				<form class="form-inline my-2 my-lg-0" data-children-count="1">
+				    <input class="form-control mr-sm-2" type="text" placeholder="Recherche">
+				        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
+				</form>
+			</div>
+		</div>
+	</div>
+    {# ----- End titre ----- #}
+    
+	{# {{ dump(clients) }} #}
+    {% for client in clients %}
+        <div class="container bg-white" style="border-radius: 50px" >   
+            <div class="row">
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1"></div>
+                <div class="col-md-9 col-xs-12 col-sm-6 col-lg-9">
+                    <div class="container" >
+                        <h2>{{ client.nom}} {{ client.prenom }}</h2>
+                    </div>
+                    <hr>
+                    <ul class="nav flex-column bg-white mb-0">
+                        <li class="nav-item"><p><i class="fa fa-phone mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ client.tel }}</p></li>
+                        <li class="nav-item"><p><i class="fa fa-envelope mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ client.mail }}</p></li>
+                        <li class="nav-item"><p><i class="fa fa-map-marker mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ client.adr }} {{ client.ville }} {{ client.cp }}</p></li>
+                    </ul>
+                </div> 
+
+                <div class="col-md-2 col-xs-12 col-sm-6 col-lg-2">
+                    <div class="container">
+                        <div class="row">
+                            <a class="display-4" href=""><i class="fa fa-pencil-square-o"></i></a>
+                            <a class="display-4" href=""><i class="fa fa-trash text-danger fa-fw"></i></a>
+                        </div>
+                            
+                    </div>      
+                </div>  
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+
+{% endblock %}

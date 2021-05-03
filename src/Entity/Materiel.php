@@ -6,10 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+// *, indexes={@ORM\Index(name="I_FK_MATERIEL_PANNE", columns={"PANNE"})}
+
+
 /**
  * Materiel
- *
- * @ORM\Table(name="materiel", indexes={@ORM\Index(name="I_FK_MATERIEL_PANNE", columns={"PANNE"})})
+ * @ORM\Table(name="materiel")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\MaterielRepository")
  */
@@ -28,21 +30,21 @@ class Materiel
     /**
      * @var string|null
      *
-     * @ORM\Column(name="TYPE", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="TYPE", type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="MARQUE", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="MARQUE", type="string", length=255, nullable=true)
      */
     private $marque;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="MODEL", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="MODEL", type="string", length=255, nullable=true)
      */
     private $model;
 
@@ -73,16 +75,15 @@ class Materiel
     private $dossiers;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Panne::class, inversedBy="materiels")
-     * @ORM\JoinColumn(nullable=false, name="PANNE", referencedColumnName="ID")
+     * @ORM\OneToMany(targetEntity=Panne::class, mappedBy="materiel")
      */
-    private $panne;
-
+    private $pannes;
 
 
     public function __construct()
     {
         $this->dossiers = new ArrayCollection();
+        $this->pannes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -200,6 +201,36 @@ class Materiel
     public function setPanne(?Panne $panne): self
     {
         $this->panne = $panne;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Panne[]
+     */
+    public function getPannes(): Collection
+    {
+        return $this->pannes;
+    }
+
+    public function addPanne(Panne $panne): self
+    {
+        if (!$this->pannes->contains($panne)) {
+            $this->pannes[] = $panne;
+            $panne->setMateriel($this);
+        }
+
+        return $this;
+    }
+
+    public function removePanne(Panne $panne): self
+    {
+        if ($this->pannes->removeElement($panne)) {
+            // set the owning side to null (unless already changed)
+            if ($panne->getMateriel() === $this) {
+                $panne->setMateriel(null);
+            }
+        }
 
         return $this;
     }

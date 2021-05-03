@@ -27,14 +27,14 @@ class Piece
     /**
      * @var string|null
      *
-     * @ORM\Column(name="LIBELLE", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="LIBELLE", type="string", length=255, nullable=true)
      */
     private $libelle;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="PRIX", type="bigint", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="PRIX", type="bigint", nullable=true)
      */
     private $prix;
 

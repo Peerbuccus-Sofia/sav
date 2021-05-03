@@ -27,23 +27,23 @@ class Paiement
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="DATE_PAIEMENT", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DATE_PAIEMENT", type="datetime", nullable=true)
      */
-    private $datePaiement = 'NULL';
+    private $datePaiement;
 
     /**
      * @var int|null
      *
      * @ORM\Column(name="MONTANT", type="bigint", nullable=true, options={"default"="NULL"})
      */
-    private $montant = 'NULL';
+    private $montant;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="MODE_REGLEMENT", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $modeReglement = 'NULL';
+    private $modeReglement;
 
     /**
      * @ORM\OneToMany(targetEntity=Dossier::class, mappedBy="paiement")
