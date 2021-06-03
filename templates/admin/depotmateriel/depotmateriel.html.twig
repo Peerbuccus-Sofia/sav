@@ -3,8 +3,18 @@
 {% block title %}Dépôt de matériel{% endblock %}
 
 {% block body %}
-    <h1>Dépôt de matériel</h1>
+    <div class="row justify-content-center">
+        <h1>Dépôt de matériel</h1>
+    </div>
     {# {{  form(matform) }} #}
+
+    {# formulaire entité matériel #}
     {{ include ('admin/depotmateriel/materiel/_form.html.twig', {form : matform, button: 'Valider'} )}}
+    <hr>
+    {# formulaire entité panne #}
+    {{ include ('admin/depotmateriel/panne/_form.html.twig', {form : panneform, button: 'Valider'} ) }}
+    <hr>
+    {# formulaire entité dossier #}
     {{ include ('admin/depotmateriel/_form.html.twig', {form : dmform, button: 'Créer'} )}}
+
 {% endblock %}

@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
+use PhpParser\Node\Expr\Cast\String_;
 
 /**
  * Panne
@@ -43,7 +45,7 @@ class Panne
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ETAT", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ETAT", type="boolean", length=255, nullable=true)
      */
     private $etat;
 
@@ -89,12 +91,12 @@ class Panne
         return $this;
     }
 
-    public function getEtat(): ?string
+    public function getEtat(): String 
     {
         return $this->etat;
     }
 
-    public function setEtat(?string $etat): self
+    public function setEtat(String $etat): self
     {
         $this->etat = $etat;
 

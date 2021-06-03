@@ -71,7 +71,7 @@ class EmployeAuthenticator extends AbstractFormLoginAuthenticator implements Pas
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('L\'email est introuvable.');
         }
 
         return $user;
@@ -96,7 +96,7 @@ class EmployeAuthenticator extends AbstractFormLoginAuthenticator implements Pas
             return new RedirectResponse($targetPath);
         }
 
-            return new RedirectResponse($this->urlGenerator->generate('admin_accueil'));
+            return new RedirectResponse($this->urlGenerator->generate('accueil'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

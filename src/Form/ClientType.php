@@ -14,9 +14,9 @@ class ClientType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('adr')
-            ->add('ville')
-            ->add('cp')
+            // ->add('adr')
+            // ->add('ville')
+            // ->add('cp')
             ->add('tel')
             ->add('mail')
         ;

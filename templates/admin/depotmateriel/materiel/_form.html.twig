@@ -1,20 +1,19 @@
 <div class="container">
-    <div style="margin-top:75px;" > 
+
+    <div style="margin-top:75px;" >
+    <h3>Informations du matériel : </h3><br>
     <!-- ouverture du formulaire de materiel -->
     {{ form_start(matform) }}
         <div class="row">
             <div class="col-4">
-                {{ form_row(matform.type, {'attr': {'placeholder' : "Ex: Téléhpone, ordinateur, ..." }} ) }}
+                {{ form_row(matform.type, {'attr': {'placeholder' : "Ex: Téléhpone, ordinateur, ...*" }} ) }}
             </div>
             <div class="col-4">
-                {{ form_row(matform.marque, {'attr': {'placeholder' : "Marque du produit" }})}}
+                {{ form_row(matform.marque, {'attr': {'placeholder' : "Marque du produit*" }})}}
             </div>
             <div class="col-4">
-                {{ form_row(matform.model, {'attr': {'placeholder' : "Modèle du produit" }} )}}
+                {{ form_row(matform.model, {'attr': {'placeholder' : "Modèle du produit*" }} )}}
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">{{ form_row(matform.etat )}}</div>  
         </div>
         <div class="row">
             <div class="col-6">
@@ -24,7 +23,15 @@
             <label for="">Mot de passe</label>
                 {{ form_widget(matform.mdp, {'attr': {'placeholder' : "Mot de passe du compte" }} )}}
             </div>
-        </div>     
+        </div>  
+        * Champs requis 
+        <hr>
+        
+        <div class="row">
+        <div class="col-12">
+                <button class="btn btn-outline-success btn_lg btn-block">Suivant</button>      
+            </div>
+        </div>  
      <!-- fermeture du formulaire -->
     {{ form_end(matform) }}
     </div>

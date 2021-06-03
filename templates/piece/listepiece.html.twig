@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PieceController!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Libellé</th>
+            <th>Prix</th>
+        </tr>
+        {% for piece in pieces %}
+            <tr>
+                <td>{{ piece.libelle}}</td>
+                <td>{{ piece.prix}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

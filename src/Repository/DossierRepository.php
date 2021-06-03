@@ -33,18 +33,18 @@ class DossierRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // public function infodossier($iddossier)
-    // {
-    //     return $this->createQueryBuilder('do')
-    //         ->from('App\Entity\Dossier', 'd')
-    //         ->join('d.materiel', 'm')
-    //         ->join('m.pannes', 'pa')
-    //         ->join('pa.piece', 'pi')
-    //         ->where('d.num =:id')
-    //         ->setParameter('id', $iddossier)
-    //         ->getQuery()
-    //         ->getResult();
-    // }
+    public function infodossier($numDoss)
+    {
+        return $this->createQueryBuilder('do')
+            ->from('App\Entity\Dossier', 'd')
+            ->join('d.materiel', 'm')
+            ->join('m.pannes', 'pa')
+            ->join('pa.piece', 'pi')
+            ->where('do.num =:id')
+            ->setParameter('id', $numDoss)
+            ->getQuery()
+            ->getResult();
+    }
 
 
     /*

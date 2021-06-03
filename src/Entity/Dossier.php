@@ -50,16 +50,9 @@ class Dossier
     /**
      * @var int|null
      *
-     * @ORM\Column(name="DEVIS", type="bigint", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ACOMPTE", type="bigint", nullable=true, options={"default"="NULL"})
      */
-    private $devis;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="COMMENTAIRE", type="string", length=255, nullable=true, options={"default"="NULL"})
-     */
-    private $commentaire;
+    private $acompte;
 
     /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="dossiers")
@@ -88,6 +81,11 @@ class Dossier
     public function getNum(): ?int
     {
         return $this->num;
+    }
+
+    public function setNum($num)
+    {
+        $this->num = $num;
     }
 
 
@@ -127,26 +125,14 @@ class Dossier
         return $this;
     }
 
-    public function getDevis(): ?string
+    public function getAcompte(): ?string
     {
-        return $this->devis;
+        return $this->acompte;
     }
 
-    public function setDevis(?string $devis): self
+    public function setAcompte(?string $acompte): self
     {
-        $this->devis = $devis;
-
-        return $this;
-    }
-
-    public function getCommentaire(): ?string
-    {
-        return $this->commentaire;
-    }
-
-    public function setCommentaire(?string $commentaire): self
-    {
-        $this->commentaire = $commentaire;
+        $this->acompte = $acompte;
 
         return $this;
     }

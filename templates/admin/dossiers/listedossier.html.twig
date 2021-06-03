@@ -10,10 +10,10 @@
 	{{ dump(dossiers)}}
 	<div class="container">
 		<div class="row">
-			<div class="col-8">
+			<div class="col-7">
 				<h1>Liste des dossiers</h1>
 			</div>
-			<div class="col-4">
+			<div class="col-5">
 				<form class="form-inline my-2 my-lg-0" data-children-count="1">
 				    <input class="form-control mr-sm-2" type="text" placeholder="Recherche">
 				        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
@@ -44,8 +44,13 @@
 					<tr>
 						<td>{{ dossier.num }}</td>
 						<td>
-							{{ dossier.client.nom}}
-							{{ dossier.client.prenom}}
+							<div class="row">
+								{{ dossier.client.nom}}
+								{{ dossier.client.prenom}}
+							</div>
+							<div class="row">
+								{{ dossier.client.tel}}
+							</div>											
 						</td>
 						<td>
 							{{ dossier.materiel.marque}}
@@ -76,7 +81,7 @@
 
 						</td>
 						<td>
-							<a class="h4" href="{{ path("admin_detaildossier", {"num": dossier.num} ) }}"><i class="fa fa-info-circle"></i></a>
+							<a class="h4" href="{{ path("detaildossier", {"num": dossier.num} ) }}"><i class="fa fa-info-circle"></i></a>
 							<a class="h4" href=""><i class="fa fa-trash text-danger fa-fw"></i></a>
 						</td>
 						<td></td>

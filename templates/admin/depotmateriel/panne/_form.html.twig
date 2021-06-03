@@ -1,0 +1,19 @@
+<div class="container">
+    <div style="margin-top:75px;" >
+        <h3>Informations sur la panne : </h3><br>
+        <!-- ouverture du formulaire de panne -->
+        {{ form_start(panneform) }}
+            <div class="row">
+                <div class="col-12">
+                    {{ form_row(panneform.description ) }}
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-outline-success btn_lg btn-block">Valider</button>      
+            </div>
+        </div> 
+        <!-- fermeture du formulaire -->
+        {{ form_end(panneform) }}
+    </div>
+</div>

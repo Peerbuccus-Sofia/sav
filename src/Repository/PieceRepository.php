@@ -26,8 +26,7 @@ class PieceRepository extends ServiceEntityRepository
     public function infopiece($id)
     {
         return $this->createQueryBuilder('p')
-            ->from('App\Entity\Piece', 'pi')
-            ->join('pi.pannes', 'pa')
+            ->join('p.pannes', 'pa')
             ->join('pa.materiel', 'm')
             ->where('m.id =:id')
             ->setParameter('id', $id)

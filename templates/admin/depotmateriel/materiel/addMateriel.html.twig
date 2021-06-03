@@ -6,8 +6,7 @@
     <div class="row justify-content-center">
         <h1>Dépôt de matériel</h1>
     </div>
-
-    {# formulaire entité dossier #}
-    {{ include ('admin/dossiers/_form.html.twig', {form : dmform, button: 'Créer'} )}}
+    {# formulaire entité matériel #}
+    {{ include ('admin/depotmateriel/materiel/_form.html.twig', {form : matform, button: 'Suivant'} )}}
 
 {% endblock %}

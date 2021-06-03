@@ -6,7 +6,8 @@
 {% block body %}
 	<h1>Dossier {{ dossier.num }}</h1>
 	{{ dump(dossier) }}
-	{{	dump(pieces) }}
+	{{	dump(pannes) }}
+	{{ dump(dos) }}
 	
 	{# --- fiche client --- #}
 	<div class="container bg-white" style="border-radius: 50px" >   
@@ -101,19 +102,25 @@
 							<th>Editer</th>
 						</tr>
 						{# {% for panne in dossier.materiel.pannes %} #}
-						{% for piece in pieces %}
-				
+						{% for panne in pannes %}
+							
 							<tr>
-								<td> </td>
+								<td>{{ panne.description}} </td>
 								<td> 
-									{{ piece.libelle}}
+									{{ panne.piece.libelle }}	
 								</td>
 								<td></td>
-								<td></td>
+								<td>
+									{% if panne.etat == 0 %}
+										à traiter
+									{% else %}
+										traitée
+									{% endif %}
+								</td>
 								<td><p class="text-center"><a class="h3" href=""><i class="fa fa-pencil-square-o"></i></p></a></td>
 							</tr>
+							
 						{% endfor %}
-						
 					</table>
 				</div>
 
@@ -122,7 +129,6 @@
                 </div>  
             </div>
         </div>
-
 	{# --- End Panne --- #}
 
 	{# --- Paiement --- #}

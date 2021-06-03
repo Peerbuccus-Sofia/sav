@@ -1,0 +1,25 @@
+<div class="container">
+    <div style="margin-top:75px;" > 
+    <h3>Informations du dossier : </h3><br>
+    <!-- ouverture du formulaire de depot de materiel -->
+    {{ form_start(dmform) }} 
+        <div class="row" style="margin-top:20px;" >
+            <div class="col-12">
+                 <h4> Coûts : </h4><hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">{{ form_row(dmform.estimation) }}</div>
+            <div class="col-4">{{ form_row(dmform.acompte) }}</div>
+            <div class="col-4"></div>
+            {# <div class="col-4"><p> {{ add_dossier[estimation] }}</p></div> #}
+         </div>       
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-success btn-lg btn-block">Créer</button>      
+            </div>
+        </div>
+     <!-- fermeture du formulaire -->
+    {{ form_end(dmform) }}
+    </div>
+</div>

@@ -16,16 +16,6 @@ class AddMaterielType extends AbstractType
             ->add('type')
             ->add('marque')
             ->add('model')
-            ->add('etat', ChoiceType::class, [
-                'choices' => [
-                    'Neuf' => 'Neuf',
-                    'Bon état' => 'Bon état',
-                    'Abimé' => 'Abimé',
-                    'Très abimé' => 'Très abimé',
-
-                    ],
-                ]
-                )
             ->add('compte')
             ->add('mdp')
         ;

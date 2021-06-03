@@ -1,0 +1,39 @@
+<div class="container">
+    <div style="margin-top:75px;" >
+        <h3>Informations du client : </h3><br>
+        <!-- ouverture du formulaire du client -->
+        {{ form_start(clientform) }}
+            <div class="row">
+                <div class="col-6">
+                <label for="">Nom</label>
+                    {{ form_widget(clientform.nom, {'attr': { 'placeholder' : 'Nom du client*' }}) }}
+                </div>
+                <div class="col-6">
+                <label for="">Prénom</label>
+                    {{ form_widget(clientform.prenom, {'attr': { 'placeholder' : 'Prénom du client' }}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6"> 
+                    <label for="">Téléphone</label>
+                    {{ form_widget(clientform.tel, {'attr': { 'placeholder' : 'Numéro de téléphone*' }}) }}
+
+                </div>
+                <div class="col-sm-6">
+                    <label for="">Email</label>
+                    {{ form_widget(clientform.mail, {'attr': { 'placeholder' : 'Email' }}) }}
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                 <p>* Champs requis</p>
+                <hr>
+                    <button class="btn btn-outline-success btn_lg btn-block">Suivant</button>      
+                </div>
+            </div> 
+        <!-- fermeture du formulaire -->
+        {{ form_end(clientform) }}
+       
+    </div>
+</div>

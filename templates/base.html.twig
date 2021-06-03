@@ -29,12 +29,6 @@
 	</head>
 	<body>
 		{% if app.user %}
-				{# <form class="form-inline my-2 my-lg-0" data-children-count="1">
-				    <input class="form-control mr-sm-2" type="text" placeholder="Rechercher ...">
-				        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
-				</form> #}
-				
-	
 			<!-- Vertical navbar -->
 			<div class="vertical-nav bg-white" id="sidebar">
 			<div class="py-4 px-3 mb-4 bg-light">
@@ -48,23 +42,24 @@
 							Vendeur
 						{% elseif is_granted("ROLE_TECH") %}
 							Technicien
+						{% elseif  is_granted("ROLE_TECH", "ROLE_VEND") %}
+							Vendeur Technicien							
 						{% endif %}
 					</p>
 				</div>
 				</div>
 			</div>
-
 			<p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Menu principal</p>
 
 			<ul class="nav flex-column bg-white mb-0">
 				<li class="nav-item">
-				<a href="{{ path('admin_accueil') }}" class="nav-link text-dark font-italic bg-light">
+				<a href="{{ path('accueil') }}" class="nav-link text-dark font-italic bg-light">
 							<i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
 							Dossiers
 						</a>
 				</li>
 				<li class="nav-item">
-				<a href="{{ path('admin_depotmateriel')}}" class="nav-link text-dark bg-light font-italic">
+				<a href="{{ path('addclient')}}" class="nav-link text-dark bg-light font-italic">
 							<i class="fa fa-mobile mr-3 text-primary fa-fw"></i>
 							Dépôt matériel
 						</a>
@@ -76,7 +71,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="{{ path('admin_listeclient')}}" class="nav-link text-dark bg-light font-italic">
+					<a href="{{ path('listeclient')}}" class="nav-link text-dark bg-light font-italic">
 						<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
 						Client
 					</a>
@@ -93,9 +88,20 @@
 						</a>
 				</li>
 				<li class="nav-item">
-				<a href="#" class="nav-link text-dark font-italic bg-light">
+				<a href="{{ path('listepiece')}}" class="nav-link text-dark font-italic bg-light">
 							<i class="fa fa-product-hunt mr-3 text-primary fa-fw"></i>
-							Produit
+							Pièces
+						</a>
+				</li>
+			</ul>
+
+			<p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Achat</p>
+
+			<ul class="nav flex-column bg-white mb-0">
+				<li class="nav-item">
+				<a href="{{ path('piecebuy')}}" class="nav-link text-dark bg-light font-italic">
+							<i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
+							Pièce à acheter
 						</a>
 				</li>
 			</ul>
@@ -117,12 +123,11 @@
 			<div class="page-content p-5" id="content">
   				<!-- Toggle button -->
   				<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
+		{% else %}
 		{% endif %}		
 				<div class="container">
                     {% block body %}{% endblock %}
 			    </div>
 			</div>		  
-		
-	
     </body>
 </html>

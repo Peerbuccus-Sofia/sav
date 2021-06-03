@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -31,6 +32,7 @@ class Materiel
      * @var string|null
      *
      * @ORM\Column(name="TYPE", type="string", length=255, nullable=true)
+     * @Assert\NotBlank
      */
     private $type;
 
@@ -38,6 +40,8 @@ class Materiel
      * @var string|null
      *
      * @ORM\Column(name="MARQUE", type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * 
      */
     private $marque;
 
@@ -45,6 +49,8 @@ class Materiel
      * @var string|null
      *
      * @ORM\Column(name="MODEL", type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * 
      */
     private $model;
 

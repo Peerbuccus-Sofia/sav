@@ -20,8 +20,25 @@ class MaterielRepository extends ServiceEntityRepository
     }
 
      /**
-      * @return Materiel[] Returns an array of Materiel objects
+       * return last row of this table
       */
+    public function findByMateriel()
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+        "SELECT ID FROM App\Entity\Materiel WHERE ID = (
+              SELECT MAX(ID) FROM App\Entity\Materiel)");
+  
+        $result= $query->execute();
+        // $result= $query->getOneOrNullResult();
+
+        dump($query);
+        return $result[0];
+        // return $this->createQueryBuilder('m.ID')
+        //         ->from('App\Entity\Materiel', 'm')
+        //         ->where('m.ID' =: $id->getDSL())
+    }
+
 
     /*
     public function findByExampleField($value)

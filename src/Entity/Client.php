@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Client
@@ -28,6 +29,8 @@ class Client
      * @var string|null
      *
      * @ORM\Column(name="NOM", type="string", length=255, nullable=true)
+     * @Assert\Length(min=2, max=255) 
+     * @Assert\NotBlank
      */
     private $nom;
 
@@ -35,6 +38,7 @@ class Client
      * @var string|null
      *
      * @ORM\Column(name="PRENOM", type="string", length=255, nullable=true)
+     * @Assert\Length(min=2, max=255)
      */
     private $prenom;
 
@@ -42,6 +46,7 @@ class Client
      * @var string|null
      *
      * @ORM\Column(name="ADR", type="string", length=255, nullable=true)
+     * @Assert\Length(min=5, max=255)
      */
     private $adr;
 
@@ -49,20 +54,27 @@ class Client
      * @var string|null
      *
      * @ORM\Column(name="VILLE", type="string", length=255, nullable=true)
+     * @Assert\Length(min=2, max=255) 
      */
     private $ville;
 
     /**
-     * @var int|null
+     * @var int
      *
      * @ORM\Column(name="CP", type="integer", nullable=true)
+     * @Assert\Type(
+     *   type="integer",
+     *   message="La valeur {{ value }} ne corresponds pas à la valeur requise."
+     * )
+     * @Assert\Regex(pattern="/^\(0\)[0-4]*$/", message="Numéro de téléphone requis") 
      */
     private $cp = NULL;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="TEL", type="bigint", nullable=true)
+     * @ORM\Column(name="TEL", type="integer", nullable=true)
+     * @Assert\NotBlank
      */
     private $tel;
 
@@ -70,6 +82,9 @@ class Client
      * @var string|null
      *
      * @ORM\Column(name="MAIL", type="string", length=255, nullable=true)
+     *  @Assert\Email(
+     *     message = "La valeur '{{ value }}' ne corresponds pas à une adresse email."
+     * )
      */
     private $mail;
 
