@@ -2,15 +2,25 @@
     <div style="margin-top:75px;" > 
     <h3>Informations du dossier : </h3><br>
     <!-- ouverture du formulaire de depot de materiel -->
-    {{ form_start(dmform) }} 
+    {{ dump(dossierform)}}
+    {{ form_start(dossierform) }} 
+        <div class="row">
+            <div class="col-12">
+                {{ form_widget(dossierform.type) }}
+
+                {% if dossierform.type == "Reparation" %}
+                    
+                {% endif %}
+            </div>
+        </div>
         <div class="row" style="margin-top:20px;" >
             <div class="col-12">
                  <h4> Coûts : </h4><hr>
             </div>
         </div>
-        <div class="row">
-            <div class="col-4">{{ form_row(dmform.estimation) }}</div>
-            <div class="col-4">{{ form_row(dmform.acompte) }}</div>
+        <div class="row"  id="text" >
+            <div class="col-4">{{ form_row(dossierform.estimation) }}</div>
+            <div class="col-4">{{ form_row(dossierform.acompte) }}</div>
             <div class="col-4"></div>
             {# <div class="col-4"><p> {{ add_dossier[estimation] }}</p></div> #}
          </div>       
@@ -20,6 +30,6 @@
             </div>
         </div>
      <!-- fermeture du formulaire -->
-    {{ form_end(dmform) }}
+    {{ form_end(dossierform) }}
     </div>
 </div>

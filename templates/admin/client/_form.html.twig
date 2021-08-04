@@ -16,8 +16,7 @@
             <div class="row">
                 <div class="col-sm-6"> 
                     <label for="">Téléphone</label>
-                    {{ form_widget(clientform.tel, {'attr': { 'placeholder' : 'Numéro de téléphone*' }}) }}
-
+                    {{ form_widget(clientform.tel, {'attr': { 'placeholder' : 'Numéro de téléphone*', 'class' : 'masque' }}) }}
                 </div>
                 <div class="col-sm-6">
                     <label for="">Email</label>

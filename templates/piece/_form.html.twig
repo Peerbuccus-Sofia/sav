@@ -1,0 +1,33 @@
+
+        <!-- ouverture du formulaire de materiel -->
+        {{ form_start(pieceform) }}
+            <div class="row">
+                <div class="col">
+                    {{ form_row(pieceform.libelle, {'attr': {'placeholder' : "Ex: Libelle de la pièce*" }} ) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ form_row(pieceform.prix, {'attr': {'placeholder' : "Prix*" }})}}
+                </div>
+            </div>
+            {% if route == "updatepiece" %}
+            <div class="row">
+                <div class="col">
+                    {{ form_row(pieceform.quantite, {'attr': {'placeholder' : "Quantité" }})}}
+                </div>
+            </div>
+            {% endif %}
+            * Champs requis 
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    {% if route == "updatepiece" %}
+                       <button class="btn btn-outline-success btn-lg btn-block">Modifier</button>
+                    {% else %}
+                    <button class="btn btn-outline-success btn-lg btn-block">Valider</button>  
+                     {% endif %}    
+                </div>
+            </div>  
+        <!-- fermeture du formulaire -->
+        {{ form_end(pieceform) }}

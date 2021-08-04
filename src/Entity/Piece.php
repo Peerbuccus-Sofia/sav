@@ -43,6 +43,27 @@ class Piece
      */
     private $pannes;
 
+    /**
+     * @ORM\Column(name="QUANTITE", type="bigint", nullable=true)
+     */
+    private $quantite;
+
+    /**
+     * @ORM\Column(name="ETAT",type="string", length=255)
+     */
+    private $etat;
+
+
+    /**
+     * @ORM\Column(name="CREATED_UP", type="datetime")
+     */
+    private $created_up;
+
+    /**
+     * @ORM\Column(name="UPDATED_UP",type="datetime", nullable=true)
+     */
+    private $updated_up;
+
     public function __construct()
     {
         $this->pannes = new ArrayCollection();
@@ -103,6 +124,54 @@ class Piece
                 $panne->setPiece(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getQuantite(): ?string
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(?string $quantite): self
+    {
+        $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getCreatedUp(): ?\DateTimeInterface
+    {
+        return $this->created_up;
+    }
+
+    public function setCreatedUp(\DateTimeInterface $created_up): self
+    {
+        $this->created_up = $created_up;
+
+        return $this;
+    }
+
+    public function getUpdatedUp(): ?\DateTimeInterface
+    {
+        return $this->updated_up;
+    }
+
+    public function setUpdatedUp(?\DateTimeInterface $updated_up): self
+    {
+        $this->updated_up = $updated_up;
 
         return $this;
     }

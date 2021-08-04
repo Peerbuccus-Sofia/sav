@@ -66,14 +66,14 @@ class Client
      *   type="integer",
      *   message="La valeur {{ value }} ne corresponds pas à la valeur requise."
      * )
-     * @Assert\Regex(pattern="/^\(0\)[0-4]*$/", message="Numéro de téléphone requis") 
+     * @Assert\Regex(pattern="/^\(0\)[0-4]*$/", message="CP requis") 
      */
     private $cp = NULL;
 
     /**
-     * @var int|null
+     * @var string|null
      *
-     * @ORM\Column(name="TEL", type="integer", nullable=true)
+     * @ORM\Column(name="TEL", type="string", length=32, nullable=true)
      * @Assert\NotBlank
      */
     private $tel;

@@ -90,6 +90,7 @@ class Materiel
     {
         $this->dossiers = new ArrayCollection();
         $this->pannes = new ArrayCollection();
+      
     }
 
     public function getId(): ?int
@@ -240,4 +241,5 @@ class Materiel
 
         return $this;
     }
+
 }

@@ -12,12 +12,11 @@ use App\Form\AddPanneType;
 use App\Form\EditUserType;
 use App\Form\AddDossierType;
 use App\Form\AddMaterielType;
+use App\Form\AddTypedossierType;
 use App\Repository\PanneRepository;
-use App\Repository\PieceRepository;
 use App\Repository\ClientRepository;
 use App\Repository\DossierRepository;
 use App\Repository\EmployeRepository;
-use App\Repository\MaterielRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,33 +81,29 @@ class AdminController extends AbstractController
 
     /**
      * Retourne les informations complète concernant un dossier
-     * @Route("/listedossier/{num}", name="detaildossier")
+     * @Route("/listedossier/{id}", name="detaildossier")
      */
-    public function detaildossier(Dossier $dossier, PanneRepository $repo, DossierRepository $repodossier)
+    public function detaildossier(Request $request, EntityManagerInterface $manager, Dossier $dossier, PanneRepository $repo, DossierRepository $repodossier)
     {
        $panne= $repo->infopanne($dossier->getMateriel()->getId());
-        $dos = $repodossier->infodossier($dossier->getNum());
+        // $dos = $repodossier->infodossier($dossier->getId());
+        $formdossier = $this->createForm(AddTypedossierType::class, $dossier);
+        $formdossier->handleRequest($request);
+        if ($formdossier->isSubmitted() && $formdossier->isValid()){
+            $manager->persist($dossier);
+            $manager->flush();
+            $this->redirectToRoute('detaildossier', ['id' => $dossier->getId()]);
+        }
         $user = $this->getUser();
         return $this->render('admin/dossiers/detaildossier.html.twig', [
+            'dossierform' => $formdossier->createView(),
             'user' => $user,
             'dossier' => $dossier,
             'pannes' => $panne,
-            'dos' => $dos
+            // 'dos' => $dos
         ]);
     }
 
-    /**
-     * Retourne la liste des clients 
-     * @Route("/listeclient", name="listeclient")
-     */
-    public function listeclient(ClientRepository $repo){
-        $user = $this->getUser();
-        $client = $repo->findAll();
-        return $this->render('admin/client/listeclient.html.twig', [
-            'user' => $user,
-            'clients' => $client
-        ]);
-    }
 
 //Formulaire dépôt de matériel
     
@@ -146,6 +141,7 @@ class AdminController extends AbstractController
             $manager->persist($materiel);
             $manager->flush();
             return $this->redirectToRoute('addpanne', [ 'id' => $client->getId() ,'idmateriel' => $materiel->getId()]);
+            //return $this->redirectToRoute('diagnostic', [ 'id' => $client->getId() ,'idmateriel' => $materiel->getId()]);
         }
         return $this->render('admin/depotmateriel/materiel/addMateriel.html.twig', [
             'matform' => $formMateriel->createView(),
@@ -155,50 +151,44 @@ class AdminController extends AbstractController
 
     }
 
-    /**
-     * Formulaire panne
-     * @Route("/depotmateriel/client/{id}/materiel/{idmateriel}/panne", name="addpanne")
-     * @ParamConverter("client", options={"mapping" : {"id" : "id"}} )
-     * @ParamConverter("materiel", options={"mapping"={"idmateriel": "id" }})
-     */
-    public function addpanne(Request $request, EntityManagerInterface $manager, MaterielRepository $repoMat){
-        $user = $this->getUser();
-        
-        $panne = new Panne;
-        $formPanne = $this->createForm(AddPanneType::class, $panne);
-        $formPanne->handleRequest($request);
-
-        $tabMat = $repoMat->findAll();
-        $lastmateriel = $tabMat[count($tabMat)-1];
-        //dump($lastmateriel->getId());
-        //save panne
-        if($formPanne->isSubmitted() && $formPanne->isValid()){
-            $panne->setMateriel($lastmateriel);
-            //$panne->setPiece();
-            $manager->persist($panne);
-            $manager->flush();
-            return $this->redirectToRoute('adddossier');                
-        }
-        return $this->render('admin/depotmateriel/panne/addPanne.html.twig', [
-            'panneform' => $formPanne->createView(),
-            'user' => $user
-        ]);
-    }   
-
-    /**
-     * Ajout de piece manquante
-     * @Route("/panne{id}/piece", name="addpiece")
-     */
     
-
 
     /**
      * Formulaire dossier
-     * @Route("/depotmateriel/client/{id}/materiel/{idmateriel}/panne/{idpanne}", name="adddossier" )
-     * 
+     * @Route("/depotmateriel/client/{id}/materiel/{idmateriel}/panne/{idpanne}/dossier", name="adddossier" )
+     * @ParamConverter("client", options={"mapping" : {"id" : "id"}} )
+     * @ParamConverter("materiel", options={"mapping"={"idmateriel": "id" }}) 
+     * @ParamConverter("pannes", options={"mapping"={"idpanne": "id" }})
      */
-    public function dossier(Request $request, EntityManagerInterface $manager){
+    public function dossier(Request $request, EntityManagerInterface $manager,Client $client, Materiel $materiel, Panne $pannes){
+        $user = $this->getUser();
+        $dossier = new Dossier;
+        $formDossier = $this->createForm(AddDossierType::class, $dossier);
+        $formDossier->handleRequest($request);
+        //save dossier
+        if($formDossier->isSubmitted() && $formDossier->isValid()){
+            $dossier->setClient($client);
+            $dossier->setMateriel($materiel);
+            $dossier->setEmploye($user);
+            $manager->persist($dossier);
+            $manager->flush();
+            return $this->redirectToRoute('detaildossier', [ 'id' => $dossier->getId()]);                
+        }
+        return $this->render('admin/depotmateriel/dossier/addDossier.html.twig', [
+            'dossierform' => $formDossier->createView(),
+            'user' => $user,
+            'pannes' => $pannes,
+            'client' => $client,
+            'materiel' => $materiel
+        ]);
 
     }
+    
+      /**
+     * Ajout de piece manquante
+     * @Route("/panne{id}/piece", name="addpiece")
+     */
+
+     
     
 }

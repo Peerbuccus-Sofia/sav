@@ -16,15 +16,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Dossier
 {
+
     /**
      * @var int
-     *
-     * @ORM\Column(name="NUM", type="integer", nullable=false)
+     * @ORM\Column(name="ID", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $num;
+    private $id;
 
+    /**
+     *
+     * @ORM\Column(name="NUM", type="string", length=32, nullable=false)
+     */
+    private $num;
 
     /**
      * @var string|null
@@ -72,20 +77,34 @@ class Dossier
      */
     private $paiement;
 
-    // /**
-    //  * @ORM\ManyToOne(targetEntity=Param::class, inversedBy="dossiers")
-    //  * @ORM\JoinColumn(nullable=false, name="NUMSEQ", referencedColumnName="NUMSEQ")
-    //  */
-    // private $numseq;
+    /**
+     * @ORM\ManyToOne(targetEntity=Employe::class, inversedBy="dossiers")
+     * @ORM\JoinColumn(nullable=false, name="EMPLOYE", referencedColumnName="id")
+     */
+    private $employe;
 
-    public function getNum(): ?int
+    /**
+     * @ORM\Column(name="TYPE", type="string", length=255)
+     */
+    private $type;
+
+   
+
+    
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNum(): ?string
     {
         return $this->num;
     }
 
-    public function setNum($num)
+    public function setNum($num) : self
     {
         $this->num = $num;
+        return $this;
     }
 
 
@@ -172,4 +191,55 @@ class Dossier
 
         return $this;
     }
+
+    public function getEmploye(): ?Employe
+    {
+        return $this->employe;
+    }
+
+    public function setEmploye(?Employe $employe): self
+    {
+        $this->employe = $employe;
+
+        return $this;
+    }
+
+    public function getReparation(): ?bool
+    {
+        return $this->reparation;
+    }
+
+    public function setReparation(bool $reparation): self
+    {
+        $this->reparation = $reparation;
+
+        return $this;
+    }
+
+    public function getDiagnostic(): ?bool
+    {
+        return $this->diagnostic;
+    }
+
+    public function setDiagnostic(bool $diagnostic): self
+    {
+        $this->diagnostic = $diagnostic;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+
+    
 }

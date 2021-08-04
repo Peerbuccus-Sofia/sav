@@ -1,0 +1,34 @@
+<div class="container bg-white" style="border-radius: 50px" >   
+            <div class="row">
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1"></div>
+				<div class="col-md-10 col-xs-12 col-sm-6 col-lg-10">
+			    	<div class="container" >
+                        <h2>Panne</h2>
+                    </div>
+					<table class="table">
+						<tr>
+							<th>Description de la panne</th>
+							<th>Pièces requises</th>
+							<th>Editer</th>
+						</tr>
+							
+							<tr>
+								<td>{{ pannes.description}} </td>
+								<td> 
+                                {% if  pannes.piece == NULL %}
+                                 <p>Pas de pièce selectionnées</p>
+                                {% else %}
+                                    {{ pannes.piece.libelle }}	
+                                {% endif %}
+									
+								</td>
+								<td><p class="text-center"><a class="h3" href=""><i class="fa fa-pencil-square-o"></i></p></a></td>
+							</tr>
+					</table>
+				</div>
+
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1">
+                       
+                </div>  
+            </div>
+        </div>

@@ -1,0 +1,15 @@
+<div class="container bg-white" style="border-radius: 50px" >
+			<div class="row">
+				<div class="col-4">
+					<p>Statut du dossier : {{dossier.statut}} </p>
+				</div>
+				<div class="col-4">
+					{{ form_start(dossierform)}}
+						{{ form_widget(dossierform.statut)}}
+				</div>
+				<div class="col-4">
+					<button class="btn btn-success">Modifier</button>
+					{{form_end(dossierform)}}
+				</div>
+			</div>
+		</div>

@@ -24,8 +24,10 @@
         {% block javascripts %}
 			{#{{ encore_entry_script_tags('app') }}#}
 		{% endblock %}
-		<script src="{{ asset('javascript/menu.js') }}"></script>
-
+		<script src="{{ asset('javascript/menu.js') }}" defer></script>
+		<script src="{{ asset('javascript/hide_field.js') }}" defer></script>
+		<script src="{{ asset('javascript/return.js') }}" defer></script>
+		<script src="{{ asset('javascript/masque.js') }}" defer></script>
 	</head>
 	<body>
 		{% if app.user %}
@@ -67,13 +69,13 @@
 				<li class="nav-item">
 					<a href="#" class="nav-link text-dark bg-light font-italic">
 						<i class="fa fa-comments mr-3 text-primary fa-fw"></i>
-						&Eacute;v&eacute;nement
+						&Eacute;v&eacute;nements
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="{{ path('listeclient')}}" class="nav-link text-dark bg-light font-italic">
 						<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-						Client
+						Clients
 					</a>
 				</li>
 			</ul>
@@ -101,7 +103,7 @@
 				<li class="nav-item">
 				<a href="{{ path('piecebuy')}}" class="nav-link text-dark bg-light font-italic">
 							<i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
-							Pièce à acheter
+							Pièces à acheter
 						</a>
 				</li>
 			</ul>

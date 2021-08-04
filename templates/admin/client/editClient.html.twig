@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer client{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <h1>Modification de la fiche client</h1>
+    </div>
+    <div class="container">
+        {{ include ('admin/client/_form.html.twig', {form : clientform, button: 'Modifier'} )}}
+    </div>
+
+{% endblock %}

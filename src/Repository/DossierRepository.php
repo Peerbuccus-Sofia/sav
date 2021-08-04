@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Dossier;
+use App\Entity\Employe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,11 +19,10 @@ class DossierRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Dossier::class);
     }
-
+    
     /**
      * @return Dossier[] Returns an array of Dossier objects
      */
-
     public function infodossiers()
     {
         return $this->createQueryBuilder('do')

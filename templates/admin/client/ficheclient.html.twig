@@ -1,0 +1,32 @@
+<div class="container bg-white" style="border-radius: 50px" >   
+            <div class="row">
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1"></div>
+                <div class="col-md-10 col-xs-12 col-sm-6 col-lg-10">
+                    <div class="container" >
+                        <h2>Fiche client</h2>
+                    </div>
+                    <hr>
+                    <ul class="nav flex-column bg-white mb-0">
+                        <li class="nav-item"><p><i class="fa fa-user mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ dossier.client.nom}} {{ dossier.client.prenom }}</p></li>
+                        <li class="nav-item"><p><i class="fa fa-phone mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ dossier.client.tel }}</p></li>
+						{% if dossier.client.mail == "" %}
+							{% else %}
+                        <li class="nav-item"><p><i class="fa fa-envelope mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ dossier.client.mail }}</p></li>
+						{% endif %}
+						{% if dossier.client.adr == "" %}
+							{% else %}
+                        	<li class="nav-item"><p><i class="fa fa-map-marker mr-3 text-primary fa-fw" aria-hidden="true"></i> {{ dossier.client.adr }} {{ dossier.client.ville }} {{ dossier.client.cp }}</p></li>	
+						{% endif %}
+							
+                    </ul>
+                </div> 
+
+                <div class="col-md-1 col-xs-12 col-sm-6 col-lg-1">
+                    <div class="container">
+                        <div class="row">
+							<a class="display-4" href="{{ path('editclient', {'id' : dossier.id ,'idclient' : dossier.client.id } ) }}"><i class="fa fa-pencil-square-o"></i></a>
+                        </div>  
+                    </div>      
+                </div>  
+            </div>
+        </div>

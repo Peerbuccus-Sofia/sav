@@ -22,36 +22,30 @@ class Diagnostic
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="MATERIEL", type="integer", nullable=false)
-     */
-    private $materiel;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="PRIX", type="bigint", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="PRIX", type="bigint", nullable=true)
      */
-    private $prix = 'NULL';
+    private $prix;
+
+    /**
+     * @ORM\Column(type="boolean", name="ETAT")
+     */
+    private $etat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Materiel::class, inversedBy="diagnostics")
+     * @ORM\JoinColumn(nullable=false, name="MATERIEL", referencedColumnName="ID")
+     */
+    private $materiel;
 
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function getMateriel(): ?int
-    {
-        return $this->materiel;
-    }
-
-    public function setMateriel(int $materiel): self
-    {
-        $this->materiel = $materiel;
-
-        return $this;
-    }
 
     public function getPrix(): ?string
     {
@@ -61,6 +55,30 @@ class Diagnostic
     public function setPrix(?string $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getEtat(): ?bool
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(bool $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getMateriel(): ?Materiel
+    {
+        return $this->materiel;
+    }
+
+    public function setMateriel(?Materiel $materiel): self
+    {
+        $this->materiel = $materiel;
 
         return $this;
     }

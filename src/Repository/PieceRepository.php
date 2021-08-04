@@ -34,4 +34,12 @@ class PieceRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function piecedispo($etat){
+        return $this->createQueryBuilder('p')
+        ->where('p.etat =:a')
+        ->setParameter('a', $etat)
+        ->getQuery()
+        ->getResult();
+    }
+
 }

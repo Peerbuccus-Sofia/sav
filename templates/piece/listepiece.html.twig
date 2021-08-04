@@ -5,18 +5,54 @@
 {% block body %}
 
 <div class="container">
-    <table class="table">
-        <tr>
-            <th>Libellé</th>
-            <th>Prix</th>
-        </tr>
-        {% for piece in pieces %}
+    <div class="row">
+        <div class="col-9">
+            <h1>Liste des pièces en stock</h1>
+        </div>
+        <div class="col-3">
+            <a href="{{ path('addpiece') }}" class="btn btn-primary">Ajouter une pièce au stock</a>
+        </div>  
+    </div>
+    <div class="row" style="margin-top:24px">
+        <table class="table borderless bg-white" style="border-radius:25px">
             <tr>
-                <td>{{ piece.libelle}}</td>
-                <td>{{ piece.prix}}</td>
+                <th>Libellé</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Modifié le :</th>
+
+                <th>Editer</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for piece in pieces %}
+                <tr>
+                    <td>{{ piece.libelle}}</td>
+                    <td>{{ piece.prix}}</td>
+                    <td>{{ piece.quantite }}</td>
+                    <th>
+                    {% if piece.updatedUp == NULL %}
+                    {% else %}
+                        {{ piece.updatedUp| date('Y/m/d')}}
+                    {% endif %}
+                    </th>
+					<td>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <a class="h4" href="{{ path("updatepiece", {"id": piece.id} ) }}"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            <div class="col-sm-2">
+                                <form method="post" action="{{ path("deletepiece", {"id": piece.id} ) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette pièce ?')">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ piece.id) }}">
+                                    <button class="h4" style="border:none"><i class="fa fa-trash" style="color: red"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>                 
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
 </div>
 
 {% endblock %}

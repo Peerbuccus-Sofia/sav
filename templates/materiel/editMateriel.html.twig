@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer Materiel{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <h1>Modification du matériel</h1>
+    </div>
+    <div class="container">
+        {{ include ('admin/depotmateriel/materiel/_form.html.twig', {form : matform, button: 'Modifier'} )}}
+    </div>
+
+{% endblock %}
+

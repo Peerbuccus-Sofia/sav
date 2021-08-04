@@ -6,6 +6,9 @@
     <div class="row justify-content-center">
         <h1>Dépôt de matériel</h1>
     </div>
+    {{ include ('admin/depotmateriel/client/ficheclientbypanne.html.twig', {client, materiel} )}}
+    <br>
+    {{ include ('materiel/fichemateriel.html.twig', {materiel, client} )}}
     {# formulaire entité panne #}
     {{ include ('admin/depotmateriel/panne/_form.html.twig', {form : panneform, button: 'Suivant'} ) }}
 

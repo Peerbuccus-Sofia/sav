@@ -3,7 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Panne;
+use App\Entity\Piece;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -24,6 +27,13 @@ class AddPanneType extends AbstractType
             ])
             ->add('etat', HiddenType::class, [
                 'empty_data' => 0
+            ])   
+            ->add('piece', EntityType::class, [
+                'class' => Piece::class,
+                'choice_label' => 'libelle',
+                'placeholder' => 'Choisir une pièce',
+                'required' => false
+
             ])
         ;
     }

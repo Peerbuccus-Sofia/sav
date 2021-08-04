@@ -26,8 +26,6 @@ class Panne
      */
     private $id;
 
-
-
     /**
      * @var string|null
      *
@@ -61,6 +59,8 @@ class Panne
      */
     private $materiel;
 
+    private $nopiece;
+    
 
     public function getId(): ?string
     {
@@ -123,6 +123,26 @@ class Panne
     public function setMateriel(?Materiel $materiel): self
     {
         $this->materiel = $materiel;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nopiece
+     */ 
+    public function getNopiece()
+    {
+        return $this->nopiece;
+    }
+
+    /**
+     * Set the value of nopiece
+     *
+     * @return  self
+     */ 
+    public function setNopiece($nopiece)
+    {
+        $this->nopiece = $nopiece;
 
         return $this;
     }

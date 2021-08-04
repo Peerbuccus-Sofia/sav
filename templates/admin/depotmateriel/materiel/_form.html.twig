@@ -1,12 +1,12 @@
 <div class="container">
 
-    <div style="margin-top:75px;" >
+    <div style="margin-top:25px;" >
     <h3>Informations du matériel : </h3><br>
     <!-- ouverture du formulaire de materiel -->
     {{ form_start(matform) }}
         <div class="row">
             <div class="col-4">
-                {{ form_row(matform.type, {'attr': {'placeholder' : "Ex: Téléhpone, ordinateur, ...*" }} ) }}
+                {{ form_row(matform.type, {'attr': {'placeholder' : "Ex: Téléphone, ordinateur, ...*" }} ) }}
             </div>
             <div class="col-4">
                 {{ form_row(matform.marque, {'attr': {'placeholder' : "Marque du produit*" }})}}
@@ -28,8 +28,8 @@
         <hr>
         
         <div class="row">
-        <div class="col-12">
-                <button class="btn btn-outline-success btn_lg btn-block">Suivant</button>      
+            <div class="col-12">
+                <button class="btn btn-outline-success btn-lg btn-block">Suivant</button>      
             </div>
         </div>  
      <!-- fermeture du formulaire -->

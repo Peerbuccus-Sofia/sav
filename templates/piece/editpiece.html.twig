@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PieceController!{% endblock %}
+
+{% block body %}
+  <div style="margin-left:250px;" class="col-md-6">
+    <div class="panel panel-info">
+        <div style="margin-top:25px;" >
+        <h3>Modifier la pièce n° {{ piece.id }} : </h3><br>
+       {{ include ('piece/_form.html.twig', {pieceform, route} )}}
+        </div>
+    </div>
+</div>
+{% endblock %}
